@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subtraction-service-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: subtraction-service
+  template:
+    metadata:
+      labels:
+        app: subtraction-service
+    spec:
+      containers:
+      - name: subtraction-service
+        image: gcr.io/ceng489project/subtraction:latest
+        ports:
+        - containerPort: 5000

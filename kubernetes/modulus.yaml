@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: modulus-service-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: modulus-service
+  template:
+    metadata:
+      labels:
+        app: modulus-service
+    spec:
+      containers:
+      - name: modulus-service
+        image: gcr.io/ceng489project/modulus:latest
+        ports:
+        - containerPort: 5000

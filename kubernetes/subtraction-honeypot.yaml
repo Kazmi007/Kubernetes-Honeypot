@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: duplicate-subtraction-service-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: duplicate-subtraction-service
+  template:
+    metadata:
+      labels:
+        app: duplicate-subtraction-service
+    spec:
+      containers:
+      - name: duplicate-subtraction-service
+        image: gcr.io/ceng489project/subtraction:latest
+        ports:
+        - containerPort: 5000

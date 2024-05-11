@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: duplicate-exponent-service-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: duplicate-exponent-service
+  template:
+    metadata:
+      labels:
+        app: duplicate-exponent-service
+    spec:
+      containers:
+      - name: duplicate-exponent-service
+        image: gcr.io/ceng489project/exponent:latest
+        ports:
+        - containerPort: 5000

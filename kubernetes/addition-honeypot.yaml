@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: duplicate-addition-service-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: duplicate-addition-service
+  template:
+    metadata:
+      labels:
+        app: duplicate-addition-service
+    spec:
+      containers:
+      - name: duplicate-addition-service
+        image: gcr.io/ceng489project/addition:latest
+        ports:
+        - containerPort: 5000

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: division-service-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: division-service
+  template:
+    metadata:
+      labels:
+        app: division-service
+    spec:
+      containers:
+      - name: division-service
+        image: gcr.io/ceng489project/division:latest
+        ports:
+        - containerPort: 5000

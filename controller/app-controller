@@ -1,0 +1,39 @@
+import time
+import random
+import requests
+
+services = ['addition-service', 'subtraction-service', 'multiplication-service', 'division-service', 'modulus-service', 'exponent-service']
+
+def redirect_to_honeypot(service_name, toHoneypot):
+    # Define the URL endpoints for the original and honeypot services, and choose which one to request
+    if (toHoneypot):
+      url = f"http://duplicate-{service_name}:5000"
+    else:
+      url = f"http://{service_name}:5000"
+
+    
+    num1 = random.randint(1, 10)
+    num2 = random.randint(1, 10)
+    
+    response = requests.post(url + '/', json={'num1': f"{num1}", num2: f"{num2}"}).ge
+
+    if (toHoneypot) :
+      print(f"Requested honeypot {service_name}, with args {num1} and {num2}, result: {response.result}")
+    else:
+      print(f"Requested original {service_name}, with args {num1} and {num2}, result: {response.result}")
+
+def main():
+    while True:
+        honeyPotIndex = random.randint(0, 5)
+
+        for index, service in enumerate(services):
+          if (index == honeyPotIndex):
+            redirect_to_honeypot(service, True)
+          else:
+            redirect_to_honeypot(service, False)
+
+        # Wait for 5 seconds before sending the next request
+        time.sleep(5)
+
+if __name__ == '__main__':
+    main()

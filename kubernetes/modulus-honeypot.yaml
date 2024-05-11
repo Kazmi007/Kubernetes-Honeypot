@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: duplicate-modulus-service-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: duplicate-modulus-service
+  template:
+    metadata:
+      labels:
+        app: duplicate-modulus-service
+    spec:
+      containers:
+      - name: duplicate-modulus-service
+        image: gcr.io/ceng489project/modulus:latest
+        ports:
+        - containerPort: 5000

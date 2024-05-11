@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: duplicate-division-service-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: duplicate-division-service
+  template:
+    metadata:
+      labels:
+        app: duplicate-division-service
+    spec:
+      containers:
+      - name: duplicate-division-service
+        image: <duplicate-division-service-image>
+        ports:
+        - containerPort: 5000

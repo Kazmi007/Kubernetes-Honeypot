@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: duplicate-multiplication-service-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: duplicate-multiplication-service
+  template:
+    metadata:
+      labels:
+        app: duplicate-multiplication-service
+    spec:
+      containers:
+      - name: duplicate-multiplication-service
+        image: gcr.io/ceng489project/multiplication:latest
+        ports:
+        - containerPort: 5000
